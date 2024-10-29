@@ -16,7 +16,6 @@ namespace Core.Data
         public static void CreateCountry(Country country)
         {
             Countries.Add(country);
-            Console.WriteLine($"{country} adli olke yaradildi");
         }
 
         public static void UpdateCountry(int? id, string? countryName, double? countryArea, string? countryAnthem, Region? region)
@@ -25,31 +24,31 @@ namespace Core.Data
             if (id.HasValue && checkCountry(id.Value))
             {
                 if (countryName != null)
-                    Countries[id.Value].CountryName = countryName;
+                    Countries[id.Value - 1].CountryName = countryName;
 
                 if (countryArea.HasValue)
-                    Countries[id.Value].CountryArea = countryArea.Value;
+                    Countries[id.Value - 1].CountryArea = countryArea.Value;
 
                 if (countryAnthem != null)
-                    Countries[id.Value].CountryAnthem = countryAnthem;
+                    Countries[id.Value - 1].CountryAnthem = countryAnthem;
 
                 if (region.HasValue)
-                    Countries[id.Value].Region = region.Value;
+                    Countries[id.Value - 1].Region = region.Value;
             }
             else
             {
-                Console.WriteLine("Verilen Id-ye uygun olke tapilmadi!");
+                Console.WriteLine("Verilen Id-ye uygun olke tapilmadi!\n");
             }
         }
         public static bool checkCountry(int id)
         {
-            return id >= 0 && id < Countries.Count; 
+            return id > 0 && id <= Countries.Count; 
         }
 
         public static void RemoveCountry(int id)
         {
             Countries.RemoveAt(id);
-            Console.WriteLine($"{Countries[id].CountryName} adli olke silindi!");   
+            Console.WriteLine($"{Countries[id].CountryName} adli olke silindi!\n");   
         }
 
         public static void GetAllCountries()
@@ -69,13 +68,9 @@ namespace Core.Data
         public static void CreatePlanet(Planet planet)
         {
             Planets.Add(planet);
-            Console.WriteLine($"{planet} adli planet yaradildi");
         }
-        public static void RemovePlanet(int id)
-        {
-            Planets.RemoveAt(id);
-            Console.WriteLine($"{Planets[id].PlanetName} adli planet silindi!");
-        }
+
+
         public static void GetAllPlanets()
         {
             foreach (var planet in Planets)
@@ -85,24 +80,18 @@ namespace Core.Data
         }
         public static void UpdatePlanet(int? id, string? planetName, double? planetArea)
         {
-
             if (id.HasValue && checkPlanet(id.Value))
             {
                 if (planetName != null)
-                    Planets[id.Value].PlanetName = planetName;
+                    Planets[id.Value - 1].PlanetName = planetName;
 
                 if (planetArea.HasValue)
-                    Planets[id.Value].PlanetArea = planetArea.Value;
-            }
-            else
-            {
-                Console.WriteLine("Verilen Id-ye uygun olke tapilmadi!");
+                    Planets[id.Value - 1].PlanetArea = planetArea.Value;
             }
         }
         public static bool checkPlanet(int id)
         {
-            return id >= 0 && id < Planets.Count;
+            return id >= 1 && id <= Planets.Count;
         }
-
     }
 }

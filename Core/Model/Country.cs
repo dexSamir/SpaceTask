@@ -9,7 +9,7 @@ namespace Core.Model
 {
     public class Country
     {
-        private static int _countryid = 0;
+        private static int _countryid = 1;
         public int Id { get; set; }
         public string CountryName { get; set; }
         public double CountryArea { get; set; }
@@ -19,8 +19,8 @@ namespace Core.Model
 
         public Country(string countryName, double area, string anthem, Region region)
         {
-            _countryid++; 
-            Id = _countryid;
+             
+            Id = _countryid++;
             CountryName = countryName;
             CountryArea = area;
             CountryAnthem = anthem;    
@@ -29,7 +29,7 @@ namespace Core.Model
 
         public string showInfo()
         {
-            return $"Country id: {Id} \nCountry Name: {CountryName} \nCountry Area: {CountryArea}\n \nCountry Anthem: {CountryAnthem} \nCountry Region: {Region}\n";
+            return $"Country id: {Id} \nCountry Name: {CountryName} \nCountry Area: {CountryArea}\nCountry Anthem: {CountryAnthem} \nCountry Region: {Region}\n";
         }
         public override string ToString()
         {
